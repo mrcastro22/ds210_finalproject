@@ -2,7 +2,7 @@ mod graph;
 use crate::graph::*;
 
 fn main() {
-    let (retweet_vec, reply_vec, mention_vec) = read_file("src/testing.txt");
+    let (retweet_vec, reply_vec, mention_vec) = read_file("src/data.txt");
     let before = SystemTime::now(); 
     println!("the average path length for retweeting is {:?}", average_path(retweet_vec.adjacency_list.len(), retweet_vec.adjacency_list));
     println!("the average path length for mentioning is {:?}", average_path(mention_vec.adjacency_list.len(), mention_vec.adjacency_list));
@@ -102,7 +102,7 @@ fn make_index_map(path:&str) -> HashMap<usize, usize> {
 
 //uses bfs, a vertex, and the adjacency list to calculate the longest distance from a certain point
 fn compute_distance_bfs(start: Vertex, adjacency_list:&AdjacencyLists) -> usize {
-    let index_map = make_index_map("src/testing.txt");
+    let index_map = make_index_map("src/data.txt");
     let mut counting_vector : Vec<usize> = Vec::new();
     let mut distance : Vec<Option<u32>> = vec![None;adjacency_list.len()+1];
     distance[start] = Some(0);
